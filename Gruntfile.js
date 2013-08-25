@@ -41,6 +41,10 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['copy:styles', 'autoprefixer']
       },
+      less: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
+        tasks: ['less:server']
+      },
       livereload: {
         options: {
           livereload: LIVERELOAD_PORT
@@ -62,6 +66,21 @@ module.exports = function (grunt) {
           src: '{,*/}*.css',
           dest: '.tmp/styles/'
         }]
+      }
+    },
+    less: {
+      server: {
+        files: {
+          '.tmp/styles/main.css': '<%= yeoman.app %>/styles/main.less'
+        }
+      },
+      dist: {
+        options: {
+          yuicompress: true
+        },
+        files: {
+          '.tmp/styles/main.css': '<%= yeoman.app %>/styles/main.less'
+        }
       }
     },
     connect: {
@@ -270,6 +289,7 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
+        'less:server',
         'copy:styles'
       ],
       test: [
@@ -278,6 +298,7 @@ module.exports = function (grunt) {
       ],
       dist: [
         'coffee',
+        'less:dist',
         'copy:styles',
         'imagemin',
         'svgmin',

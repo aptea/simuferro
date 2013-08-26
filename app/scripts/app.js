@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('simuferroApp', [])
+angular.module('simuferroApp', ['leaflet-directive'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

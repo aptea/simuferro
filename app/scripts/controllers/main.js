@@ -1,12 +1,15 @@
 'use strict';
 
 angular.module('simuferroApp')
-  .controller('MainCtrl', function ($scope, gtfs) {
+  .controller('MainCtrl', function ($scope, $log, gtfs) {
 
     $scope.readFile = function () {
+      NProgress.start();
       gtfs.read($scope.file, $scope)
         .then(function (result) {
-          console.log(result);
+          $scope.data = result;
+          $log.info(result);
+          NProgress.done();
         });
     };
 

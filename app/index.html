@@ -12,8 +12,6 @@
     <link rel="icon" href="favicon.ico" />
     <link rel="icon" type="image/png" href="favicon.png" />
 
-    <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -35,7 +33,7 @@
 
     <!-- Add your site or application content here -->
     <div id="main-container">
-      <leaflet center="france" markers="markers" paths="paths" layers="layers"></leaflet>
+      <canvas class="simu-drawing" drawing stops="data.stops" zoom="2" ng-class="{'pan': panning}"></canvas>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -51,22 +49,23 @@
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
 
+    <script src="scripts/services/animate.js"></script>
+    <script src="scripts/services/mercatorprojection.js"></script>
     <script src="scripts/services/filereader.js"></script>
     <script src="scripts/services/gtfs.js"></script>
 
     <script src="scripts/controllers/main.js"></script>
 
     <script src="scripts/directives/fileinput.js"></script>
+    <script src="scripts/directives/drawing.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/plugins.js -->
     <script src="scripts/utils/csv.js"></script>
-    <script src="scripts/directives/angular-leaflet-directive.js"></script>
     <script src="bower_components/nprogress/nprogress.js"></script>
     <script src="bower_components/jszip/jszip.js"></script>
     <script src="bower_components/jszip/jszip-load.js"></script>
